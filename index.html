@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Almaty Guide — путеводитель для туриста и первокурсника</title>
+<meta name="description" content="Достопримечательности Алматы: каталог, сравнение мест и калькулятор бюджета дня.">
+<link rel="icon" href="images/hero.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">К содержимому</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#home" aria-label="Almaty Guide, на главную">Almaty Guide</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">☰</button>
+    <nav id="nav" aria-label="Основное меню">
+      <a href="#home">Главная</a><a href="#catalog">Достопримечательности</a><a href="#student">Для первокурсника</a>
+      <a href="#compare">Сравнение мест</a><a href="#calc">Калькулятор дня</a><a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn sm accent" href="#compare" id="cmpBtn">Сравнить места (<span id="cmpCount">0</span>)</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="home">
+  <div class="wrap">
+    <h1>Алматы за один день и на весь первый курс</h1>
+    <p class="lead">От заснеженных вершин Заилийского Алатау до уютных кофеен в центре города.</p>
+    <div class="switch" role="group" aria-label="Кто вы">
+      <button class="btn" data-aud="turist" aria-pressed="true">Я турист</button>
+      <button class="btn" data-aud="student" aria-pressed="false">Я первокурсник</button>
+    </div>
+    <p id="hint" class="hint" aria-live="polite"></p>
+    <div class="cta"><a class="btn accent" href="#catalog">Выбрать место</a><a class="btn ghost" href="#routes">Собрать маршрут</a></div>
+    <p class="note">Цены ориентировочные, уточняйте на официальных сайтах.</p>
+  </div>
+</section>
+
+<section id="catalog" class="sec"><div class="wrap">
+  <h2>Достопримечательности</h2>
+  <form class="filters" onsubmit="return false" aria-label="Фильтры каталога">
+    <label>Поиск<input type="search" id="q" placeholder="Название места"></label>
+    <label>Категория<select id="fCat"><option value="">Все</option></select></label>
+    <label>Аудитория<select id="fAud"><option value="">Все</option><option value="turist">Для туриста</option><option value="student">Для первокурсника</option></select></label>
+    <label>Цена<select id="fPrice"><option value="">Любая</option><option value="0">Бесплатно</option><option value="3000">До 3000 ₸</option></select></label>
+    <label>Длительность<select id="fDur"><option value="">Любая</option><option value="1">До 1 ч</option><option value="2">До 2 ч</option><option value="99">Более 2 ч</option></select></label>
+  </form>
+  <p id="found" class="muted" aria-live="polite"></p>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="routes" class="sec alt"><div class="wrap">
+  <h2>Готовые маршруты</h2>
+  <div class="grid" id="routeGrid"></div>
+</div></section>
+
+<section id="student" class="sec"><div class="wrap">
+  <h2>Для первокурсника</h2>
+  <div class="cols">
+    <div class="panel"><h3>Чек-лист первой недели</h3>
+      <div class="bar-p" role="progressbar" aria-label="Выполнено" aria-valuemin="0" aria-valuemax="100" id="prog"><span id="progFill"></span></div>
+      <p id="progText" class="muted"></p><ul class="checks" id="checks"></ul></div>
+    <div class="panel"><h3>Бесплатный и бюджетный досуг</h3><ul id="freeList"></ul>
+      <h3>Где учиться и работать</h3><ul id="studyList"></ul></div>
+    <div class="panel"><h3>Памятка по транспорту</h3>
+      <ul><li>Автобусы и метро работают с картой ONAY! — так проезд дешевле, чем за наличные.</li>
+      <li>Метро удобно для центра, автобусы — для остальных районов.</li>
+      <li>Такси лучше брать через приложение и вдвоём-втроём.</li>
+      <li>Маршруты проверяйте в навигаторе: пробки сильно влияют на время.</li></ul></div>
+  </div>
+</div></section>
+
+<section id="compare" class="sec alt"><div class="wrap">
+  <h2>Сравнение мест</h2>
+  <button class="btn ghost" id="cmpClear">Очистить выбор</button>
+  <div class="tablebox" id="cmpBox"></div>
+</div></section>
+
+<section id="calc" class="sec"><div class="wrap">
+  <h2>Калькулятор бюджета дня</h2>
+  <div class="cols two">
+    <form class="panel" id="calcForm" onsubmit="return false">
+      <h3>Мои места</h3><div class="checks" id="calcPlaces"></div>
+      <label>Количество человек<input type="number" id="people" value="1" min="1" max="50" step="1" inputmode="numeric"></label>
+      <p class="err" id="peopleErr" role="alert"></p>
+      <label>Транспорт<select id="trans"><option value="bus">Автобус</option><option value="metro">Метро</option><option value="taxi">Такси</option></select></label>
+      <label class="row"><input type="checkbox" id="disc"> Студенческая скидка на входные билеты</label>
+      <label class="row"><input type="checkbox" id="lunch"> Обед</label>
+      <label class="row"><input type="checkbox" id="coffee"> Кофе</label>
+    </form>
+    <div class="panel" aria-live="polite"><h3>Итого</h3><div id="calcOut"></div>
+      <div class="cta"><button class="btn accent" id="saveRoute">Сохранить маршрут</button><button class="btn ghost" id="copyRoute">Скопировать маршрут</button></div>
+      <p class="note">Цены ориентировочные, уточняйте на официальных сайтах.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer id="contacts" class="foot"><div class="wrap cols">
+  <div><h3>Полезные советы</h3><ul>
+    <li>В горах возьмите тёплую одежду и воду; погода быстро меняется.</li>
+    <li>Одевайтесь по сезону и берите удобную обувь.</li>
+    <li>В горы лучше ехать утром — меньше пробок.</li></ul></div>
+  <div><h3>Авторы проекта</h3><p>Бакиров Тимур<br>Группа: ЦМиКИ<br>Дисциплина «ИКТ», 2026 год</p></div>
+  <div><h3>Об источниках</h3><p>Данные собраны из открытых источников и носят справочный характер. Цены и часы работы ориентировочные — проверяйте на официальных сайтах.</p></div>
+</div></footer>
+
+<div class="modal" id="modal" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="mTitle" tabindex="-1"><button class="x" id="mClose" aria-label="Закрыть окно">✕</button><div id="mBody"></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<button class="up" id="up" aria-label="Наверх" hidden>↑</button>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
