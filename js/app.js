@@ -53,7 +53,7 @@
     const badges = [...p.aud.map(a => "Для " + (a === "turist" ? "туриста" : "первокурсника")),
       ...(p.price === 0 ? ["Бесплатно"] : p.price <= 1500 ? ["Бюджетно"] : [])];
     return `<article class="card reveal" data-id="${p.id}">
-      <img src="images/${p.img}.svg" alt="Иллюстрация: ${p.name}" loading="lazy" width="600" height="400">
+      <img src="images/${p.img}.jpg" alt="Иллюстрация: ${p.name}" loading="lazy" width="600" height="400">
       <div class="card-b"><span class="chip">${CATS[p.cat]}</span><h3>${p.name}</h3>
       <p class="muted">${p.district}</p><p>${p.short}</p>
       <ul class="facts"><li>💰 ${priceLabel(p)}</li><li>⏱ ${p.dur} ч · 🕘 ${p.hours}</li><li>🚌 ${p.transport}</li></ul>
@@ -77,7 +77,7 @@
   function openModal(id) {
     const p = byId(id); if (!p) return;
     lastFocus = document.activeElement;
-    $("#mBody").innerHTML = `<img src="images/${p.img}.svg" alt="Иллюстрация: ${p.name}" style="border-radius:12px;margin-bottom:16px">
+    $("#mBody").innerHTML = `<img src="images/${p.img}.jpg" alt="Иллюстрация: ${p.name}" style="border-radius:12px;margin-bottom:16px">
       <h2 id="mTitle">${p.name}</h2><p class="muted">${CATS[p.cat]} · ${p.district}</p><p>${p.long}</p>
       <p><b>Цена:</b> ${priceLabel(p)}<br><b>Часы:</b> ${p.hours}<br><b>Сезон:</b> ${p.season}<br><b>Как добраться:</b> ${p.transport}</p>
       <h3>Советы</h3><ul>${p.tips.map(t => `<li>${t}</li>`).join("")}</ul>
